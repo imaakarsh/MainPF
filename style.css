@@ -54,9 +54,12 @@ body {
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 30px;
-  font-size: 25px;
+  gap: 20px;
+  font-size: 18px;
+  flex-wrap: wrap;        
+  justify-content: flex-end;
 }
+
 
 .nav-links li a {
   position: relative;
@@ -93,28 +96,7 @@ body {
   cursor: pointer;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .nav-links {
-    position: absolute;
-    top: 60px;
-    right: 0;
-    background: #0f172a;
-    width: 200px;
-    flex-direction: column;
-    text-align: center;
-    display: none;
-    padding: 20px 0;
-  }
 
-  .nav-links.active {
-    display: flex;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-}
 
 /* Hero Section */
 .home {
@@ -131,7 +113,22 @@ body {
   justify-content: space-between;
   align-items: center;
   gap: 50px;
+  padding: 20px 0;
 }
+
+@media (max-width: 480px) {
+  .home-container {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tech-icons img {
+    width: 45px;
+    height: 45px;
+  }
+}
+
 
 /* Text section */
 .home-text h1 {
@@ -156,8 +153,9 @@ body {
 
 /* Image section */
 .home-img img {
-  width: 300px;
-  height: 300px;
+  width: 100%;
+  max-width: 300px;
+  height: auto;
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid rgba(255,255,255,0.2);
@@ -297,3 +295,44 @@ p{
 }
 
 
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 32px;
+    padding-top: 60px;
+  }
+
+  p {
+    font-size: 16px;
+    padding: 15px;
+  }
+
+  .home-text h1 {
+    font-size: 28px;
+  }
+
+  .home-text p {
+    font-size: 16px;
+  }
+
+  .nav-links {
+    font-size: 16px;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  .nav-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav-links {
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+}
