@@ -336,3 +336,91 @@ p{
     font-size: 20px;
   }
 }
+
+/* About Section */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 40px;
+    text-align: center;
+    padding-top: 60px;
+  }
+
+  p {
+    font-size: 18px;
+    padding: 15px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 32px;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}
+
+
+/* Tech Stack */
+@media (max-width: 768px) {
+  .techstack h2 {
+    font-size: 26px;
+  }
+
+  .tech-icons img {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tech-icons {
+    gap: 20px;
+  }
+
+  .tech-icons img {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Social icons */
+@media (max-width: 480px) {
+  .social {
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+
+  .social img {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+
+/* Contact Page */
+@media (max-width: 768px) {
+  .social-links {
+    width: 90%;
+  }
+
+  .social-links a {
+    font-size: 16px;
+    word-break: break-all;   /* prevents overflow */
+  }
+}
+
+@media (max-width: 480px) {
+  .social-links a {
+    font-size: 14px;
+    gap: 8px;
+  }
+
+  .social-links img {
+    width: 18px;
+    height: 18px;
+  }
+}
