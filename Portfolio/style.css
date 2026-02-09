@@ -203,3 +203,54 @@ body {
   color: #f89238;
 }
 
+h1{
+  color: #f89238;
+  padding: 80px 20px 20px;
+  margin: 0;
+  font-size: 60px;
+  display: flex;
+  justify-content: center;
+}
+
+p{
+  color: #969797;
+  font-size: 22px;
+  line-height: 1.6;
+  max-width: 1020px;
+  margin: auto;
+  padding: 20px;
+  padding-top: 0;
+
+}
+
+.techstack {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.techstack h2 {
+  color: #f89238;
+  font-size: 32px;
+  margin-bottom: 40px;
+}
+
+.tech-icons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.tech-icons img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  filter: grayscale(100%);
+  transition: 0.3s;
+}
+
+.tech-icons img:hover {
+  filter: grayscale(0%);
+  transform: scale(1.1);
+}
+
