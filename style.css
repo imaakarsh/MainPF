@@ -601,3 +601,12 @@ section {
     font-size: 26px;
   }
 }
+
+h6{
+  display: flex;
+  justify-content: center;
+  color: #969797;
+  font-size: 14px;  
+  text-align: center;
+  font-family: hanken, sans-serif;
+}
