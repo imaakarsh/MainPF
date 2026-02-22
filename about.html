@@ -4,7 +4,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Apply saved theme BEFORE CSS loads to prevent a flash of wrong theme -->
   <script>
     (function () {
       var t = localStorage.getItem('theme') ||
@@ -18,37 +17,61 @@
 </head>
 
 <body>
+
+  <!-- ── NAVBAR ──────────────────────────────────────────────── -->
   <nav class="navbar">
     <div class="nav-container">
+
       <a href="index.html" class="logo">Aakarsh.dev</a>
 
+      <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation menu" aria-expanded="false">
+        ☰
+      </button>
 
-      <ul class="nav-links">
+      <div class="nav-right">
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="project.html">Projects</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">🌙</button>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- ── GLASSMORPHISM MOBILE OVERLAY ────────────────────────── -->
+  <div class="mobile-overlay" id="mobile-overlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
+    <div class="mobile-menu-card" id="mobile-menu-card">
+      <button class="mobile-close" id="mobile-close" aria-label="Close navigation menu">✕</button>
+      <div class="mobile-profile">
+        <img src="assets/favicon.jpg" alt="Aakarsh profile photo">
+      </div>
+      <ul class="mobile-nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="project.html">Projects</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
-      <!-- Theme toggle button -->
-      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">🌙</button>
     </div>
-  </nav>
+  </div>
 
-
+  <!-- ── ABOUT SECTION ─────────────────────────────────────────── -->
   <section class="about">
     <div class="about-container">
       <h1 class="section-title">About Me</h1>
       <p class="section-text">
-        I’m a Full Stack Developer who loves building fast, responsive, and user-focused web applications. I enjoy
+        I'm a Full Stack Developer who loves building fast, responsive, and user-focused web applications. I enjoy
         solving real-world problems through clean code, modern technologies, and thoughtful design. Currently focused on
         improving my skills and creating impactful projects.
       </p>
     </div>
   </section>
 
+  <!-- ── TECH STACK SECTION ────────────────────────────────────── -->
   <section class="techstack">
     <h2>TechStack</h2>
-
     <div class="tech-icons">
       <img src="assets/letter-c.png" alt="C">
       <img src="assets/python.png" alt="Python">
@@ -62,22 +85,13 @@
     </div>
   </section>
 
-  <!-- Social
-  <section>
-  <div class="social">
-  <a href="https://www.instagram.com/aakarsh.wtf/"><img src="assets/instagram.png" alt=""></a>
-  <a href="https://www.linkedin.com/in/aakarshraj07/"><img src="assets/linkedin.png" alt=""></a>
-  <a href="https://github.com/imaakarsh"><img src="assets/social.png" alt=""></a>
-  <a href="https://open.spotify.com/user/31bmyhvubvmkjqnd6jclf6x4ix4q?si=33029016ddf74bd8"><img src="assets/spotify.png" alt=""></a>
-  <a href="https://github.com/imaakarsh"><img src="assets/image.png" alt=""></a>
-  </div>
-  </section>   -->
-
+  <!-- ── FOOTER ─────────────────────────────────────────────────── -->
   <footer>
     <h6>© 2026 Created with ❤️ by Aakarsh.</h6>
   </footer>
-  <!-- Theme toggle script -->
+
   <script src="theme.js"></script>
+
 </body>
 
 </html>

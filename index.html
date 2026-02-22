@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Apply saved theme BEFORE CSS loads to prevent a flash of wrong theme -->
+  <!-- Apply saved theme BEFORE CSS loads to prevent flash of wrong theme -->
   <script>
     (function () {
       var t = localStorage.getItem('theme') ||
@@ -18,21 +18,62 @@
 </head>
 
 <body>
+
+  <!-- ── NAVBAR ──────────────────────────────────────────────── -->
   <nav class="navbar">
     <div class="nav-container">
+
       <a href="index.html" class="logo">Aakarsh.dev</a>
 
-      <ul class="nav-links">
+      <!-- Hamburger — visible on mobile only, opens glassmorphism overlay -->
+      <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation menu" aria-expanded="false">
+        ☰
+      </button>
+
+      <!-- .nav-right: desktop nav links + theme toggle on one line -->
+      <div class="nav-right">
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="project.html">Projects</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">🌙</button>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- ── GLASSMORPHISM MOBILE OVERLAY ────────────────────────────
+       Clicking the hamburger (☰) adds .overlay-open here.
+       Clicking the backdrop or (✕) removes it.
+       Only shown on mobile; hidden on 600px+ via CSS.
+  ──────────────────────────────────────────────────────────────── -->
+  <div class="mobile-overlay" id="mobile-overlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
+
+    <!-- Frosted-glass card (click inside here does NOT close the overlay) -->
+    <div class="mobile-menu-card" id="mobile-menu-card">
+
+      <!-- Close button -->
+      <button class="mobile-close" id="mobile-close" aria-label="Close navigation menu">✕</button>
+
+      <!-- Circular profile image -->
+      <div class="mobile-profile">
+        <img src="assets/favicon.jpg" alt="Aakarsh profile photo">
+      </div>
+
+      <!-- Nav links with staggered fade-in -->
+      <ul class="mobile-nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="project.html">Projects</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
-      <!-- Theme toggle button: 🌙 in dark mode, ☀️ in light mode -->
-      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">🌙</button>
-    </div>
-  </nav>
 
+    </div>
+  </div>
+
+  <!-- ── HERO SECTION ──────────────────────────────────────────── -->
   <section id="home" class="home">
     <div class="home-container">
 
@@ -45,48 +86,19 @@
       </div>
 
       <div class="home-img">
-        <img src="assets/favicon.jpg" alt="Profile">
+        <img src="assets/favicon.jpg" alt="Profile photo of Aakarsh">
       </div>
 
     </div>
   </section>
 
-  <!-- Social -->
-  <!-- <section>
-  <div class="social">
-  <a href="https://www.instagram.com/aakarsh.wtf/"><img src="assets/instagram.png" alt=""></a>
-  <a href="https://www.linkedin.com/in/aakarshraj07/"><img src="assets/linkedin.png" alt=""></a>
-  <a href="https://github.com/imaakarsh"><img src="assets/social.png" alt=""></a>
-  <a href="https://open.spotify.com/user/31bmyhvubvmkjqnd6jclf6x4ix4q?si=33029016ddf74bd8"><img src="assets/spotify.png" alt=""></a>
-  <a href="https://discord.com/users/716204729071435796"><img src="assets/image.png" alt=""></a>
-  </div>
-  </section>   -->
-
-  <!-- <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="project.html">Projects</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </div>
-</nav> -->
-
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-
-
-  <br>
-  <br>
+  <!-- ── FOOTER ─────────────────────────────────────────────────── -->
   <footer>
     <h6>© 2026 Created with ❤️ by Aakarsh.</h6>
   </footer>
-  <!-- Theme toggle script: handles localStorage, system preference, icon swap -->
+
   <script src="theme.js"></script>
+
 </body>
 
 </html>

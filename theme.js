@@ -1,70 +1,127 @@
 /**
- * theme.js — Dark / Light Mode Toggle
- * ─────────────────────────────────────
- * How it works:
- *  1. On page load, reads the saved theme from localStorage.
- *  2. If no saved theme exists, checks the user's OS preference (prefers-color-scheme).
- *  3. Applies the theme by setting data-theme on <html>.
- *  4. The toggle button swaps the icon (🌙 ↔ ☀️) and saves the choice.
+ * theme.js — Dark / Light Mode Toggle + Glassmorphism Mobile Nav Overlay
+ * ────────────────────────────────────────────────────────────────────────
+ * THEME:
+ *  1. Reads saved theme from localStorage (or OS preference).
+ *  2. Applies it to <html data-theme="...">.
+ *  3. Toggle button swaps the icon (🌙 ↔ ☀️) and persists the choice.
+ *
+ * MOBILE OVERLAY:
+ *  - Hamburger (☰) button adds .overlay-open to #mobile-overlay.
+ *  - Close (✕) button, Escape key, or clicking the dark backdrop removes it.
+ *  - Body scroll is locked while the overlay is open.
  */
 
 (function () {
 
-  /* ── 1. Determine the initial theme ─────────────────────────────── */
+  /* ─────────────────────────────────────────────────────────────
+     1. THEME — apply initial theme immediately (no flash)
+  ───────────────────────────────────────────────────────────── */
 
-  // Check localStorage for a previously saved preference
   const saved = localStorage.getItem('theme');
-
-  // Check the OS / system preference
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const initialTheme = saved || (prefersDark ? 'dark' : 'light');
 
-  // Decide: saved preference wins; otherwise follow the OS
-  const initialTheme = saved ? saved : (prefersDark ? 'dark' : 'light');
-
-  // Apply the theme immediately (before the page fully renders) to avoid a flash
   document.documentElement.setAttribute('data-theme', initialTheme);
 
-
-  /* ── 2. Update the button icon to match the active theme ─────────── */
-
+  /* Update the toggle button icon to match the current theme */
   function updateIcon(theme) {
     const btn = document.getElementById('theme-toggle');
     if (!btn) return;
-    // Show moon when dark (click to go light), show sun when light (click to go dark)
     btn.textContent = theme === 'dark' ? '🌙' : '☀️';
-    btn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    btn.setAttribute('aria-label',
+      theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
   }
 
-
-  /* ── 3. Toggle function ──────────────────────────────────────────── */
-
+  /* Toggle between dark and light */
   function toggleTheme() {
-    // Read the CURRENT theme from the <html> element
     const current = document.documentElement.getAttribute('data-theme');
-    const next    = current === 'dark' ? 'light' : 'dark';
-
-    // Apply the new theme
+    const next = current === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', next);
-
-    // Save the choice so it persists on reload and across pages
     localStorage.setItem('theme', next);
-
-    // Update the button icon
     updateIcon(next);
   }
 
 
-  /* ── 4. Wire up the button once the DOM is ready ─────────────────── */
+  /* ─────────────────────────────────────────────────────────────
+     2. GLASSMORPHISM MOBILE OVERLAY
+  ───────────────────────────────────────────────────────────── */
+
+  /* Open the overlay */
+  function openOverlay() {
+    const overlay = document.getElementById('mobile-overlay');
+    const menuToggle = document.getElementById('menu-toggle');
+    if (!overlay) return;
+
+    overlay.classList.add('overlay-open');
+    if (menuToggle) menuToggle.setAttribute('aria-expanded', 'true');
+
+    /* Lock background scroll */
+    document.body.style.overflow = 'hidden';
+  }
+
+  /* Close the overlay */
+  function closeOverlay() {
+    const overlay = document.getElementById('mobile-overlay');
+    const menuToggle = document.getElementById('menu-toggle');
+    if (!overlay) return;
+
+    overlay.classList.remove('overlay-open');
+    if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
+
+    /* Restore background scroll */
+    document.body.style.overflow = '';
+  }
+
+
+  /* ─────────────────────────────────────────────────────────────
+     3. WIRE EVERYTHING UP ONCE THE DOM IS READY
+  ───────────────────────────────────────────────────────────── */
 
   document.addEventListener('DOMContentLoaded', function () {
-    const btn = document.getElementById('theme-toggle');
-    if (btn) {
-      // Set correct icon on page load
-      updateIcon(initialTheme);
 
-      // Listen for clicks
-      btn.addEventListener('click', toggleTheme);
+    /* --- Theme toggle button --- */
+    const themeBtn = document.getElementById('theme-toggle');
+    if (themeBtn) {
+      updateIcon(initialTheme);
+      themeBtn.addEventListener('click', toggleTheme);
     }
+
+    /* --- Hamburger (☰) — opens the overlay --- */
+    const menuToggle = document.getElementById('menu-toggle');
+    if (menuToggle) {
+      menuToggle.addEventListener('click', openOverlay);
+    }
+
+    /* --- Close (✕) button inside the card --- */
+    const closeBtn = document.getElementById('mobile-close');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', closeOverlay);
+    }
+
+    /* --- Click on the dark backdrop (outside the card) closes overlay --- */
+    const overlay = document.getElementById('mobile-overlay');
+    const card = document.getElementById('mobile-menu-card');
+    if (overlay && card) {
+      overlay.addEventListener('click', function (e) {
+        /* Only close if the click was on the backdrop, not inside the card */
+        if (!card.contains(e.target)) {
+          closeOverlay();
+        }
+      });
+    }
+
+    /* --- Escape key closes the overlay --- */
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeOverlay();
+    });
+
+    /* --- Clicking a nav link inside the overlay also closes it --- */
+    const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+    mobileLinks.forEach(function (link) {
+      link.addEventListener('click', closeOverlay);
+    });
+
   });
 
 })();

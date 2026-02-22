@@ -4,7 +4,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Apply saved theme BEFORE CSS loads to prevent a flash of wrong theme -->
   <script>
     (function () {
       var t = localStorage.getItem('theme') ||
@@ -18,21 +17,48 @@
 </head>
 
 <body>
+
+  <!-- ── NAVBAR ──────────────────────────────────────────────── -->
   <nav class="navbar">
     <div class="nav-container">
+
       <a href="index.html" class="logo">Aakarsh.dev</a>
 
-      <ul class="nav-links">
+      <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation menu" aria-expanded="false">
+        ☰
+      </button>
+
+      <div class="nav-right">
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="project.html">Projects</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">🌙</button>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- ── GLASSMORPHISM MOBILE OVERLAY ────────────────────────── -->
+  <div class="mobile-overlay" id="mobile-overlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
+    <div class="mobile-menu-card" id="mobile-menu-card">
+      <button class="mobile-close" id="mobile-close" aria-label="Close navigation menu">✕</button>
+      <div class="mobile-profile">
+        <img src="assets/favicon.jpg" alt="Aakarsh profile photo">
+      </div>
+      <ul class="mobile-nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="project.html">Projects</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
-      <!-- Theme toggle button -->
-      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">🌙</button>
     </div>
-  </nav>
-  <section>
+  </div>
+
+  <!-- ── CONTACT SECTION ───────────────────────────────────────── -->
+  <section class="contact">
     <div class="container">
       <h1 class="section-title">Get in Touch</h1>
       <p class="section-text">
@@ -41,30 +67,28 @@
     </div>
   </section>
 
-
   <div class="social-links">
-
     <a href="mailto:aakarsh027@outlook.com" target="_blank">
-      <img src="assets/mail.png" alt="Email">
+      <img src="assets/mail.png" alt="Email icon">
       aakarsh027@outlook.com
     </a>
-
     <a href="https://github.com/imaakarsh" target="_blank">
-      <img src="assets/github.png" alt="GitHub">
+      <img src="assets/github.png" alt="GitHub icon">
       github.com/imaakarsh
     </a>
-
     <a href="https://linkedin.com/in/aakarshraj07" target="_blank">
-      <img src="assets/linkedin.png" alt="LinkedIn">
+      <img src="assets/linkedin.png" alt="LinkedIn icon">
       linkedin.com/in/aakarshraj07
     </a>
   </div>
 
+  <!-- ── FOOTER ─────────────────────────────────────────────────── -->
   <footer>
-    <h6 style="margin-top: 200px;">© 2026 Crafted with ❤️ by Aakarsh.</h6>
+    <h6>© 2026 Crafted with ❤️ by Aakarsh.</h6>
   </footer>
-  <!-- Theme toggle script -->
+
   <script src="theme.js"></script>
+
 </body>
 
 </html>
