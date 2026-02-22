@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Apply saved theme BEFORE CSS loads to prevent flash of wrong theme -->
+  
   <script>
     (function () {
       var t = localStorage.getItem('theme') ||
@@ -18,19 +18,19 @@
 </head>
 
 <body>
-
-  <!-- ── NAVBAR ──────────────────────────────────────────────── -->
+  <script src="theme.js"></script>
+  <!--NAVBAR-->
   <nav class="navbar">
     <div class="nav-container">
 
       <a href="index.html" class="logo">Aakarsh.dev</a>
 
-      <!-- Hamburger — visible on mobile only, opens glassmorphism overlay -->
+      
       <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation menu" aria-expanded="false">
         ☰
       </button>
 
-      <!-- .nav-right: desktop nav links + theme toggle on one line -->
+      
       <div class="nav-right">
         <ul class="nav-links" id="nav-links">
           <li><a href="index.html">Home</a></li>
@@ -44,14 +44,10 @@
     </div>
   </nav>
 
-  <!-- ── GLASSMORPHISM MOBILE OVERLAY ────────────────────────────
-       Clicking the hamburger (☰) adds .overlay-open here.
-       Clicking the backdrop or (✕) removes it.
-       Only shown on mobile; hidden on 600px+ via CSS.
-  ──────────────────────────────────────────────────────────────── -->
+  
   <div class="mobile-overlay" id="mobile-overlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
 
-    <!-- Frosted-glass card (click inside here does NOT close the overlay) -->
+    
     <div class="mobile-menu-card" id="mobile-menu-card">
 
       <!-- Close button -->
@@ -62,7 +58,7 @@
         <img src="assets/favicon.jpg" alt="Aakarsh profile photo">
       </div>
 
-      <!-- Nav links with staggered fade-in -->
+      <!-- Nav links  -->
       <ul class="mobile-nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="project.html">Projects</a></li>
@@ -73,7 +69,7 @@
     </div>
   </div>
 
-  <!-- ── HERO SECTION ──────────────────────────────────────────── -->
+  <!-- HERO SECTION -->
   <section id="home" class="home">
     <div class="home-container">
 
@@ -92,12 +88,12 @@
     </div>
   </section>
 
-  <!-- ── FOOTER ─────────────────────────────────────────────────── -->
+  <!--FOOTER-->
   <footer>
     <h6>© 2026 Created with ❤️ by Aakarsh.</h6>
   </footer>
 
-  <script src="theme.js"></script>
+
 
 </body>
 

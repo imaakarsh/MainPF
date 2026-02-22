@@ -7,7 +7,7 @@
    ════════════════════════════════════════════════════════════ */
 
 
-/* ── 1. CSS CUSTOM PROPERTIES (THEME VARIABLES) ─────────────── */
+/*  1. CSS CUSTOM PROPERTIES (THEME VARIABLES) ─ */
 
 :root,
 [data-theme="dark"] {
@@ -78,7 +78,7 @@
 }
 
 
-/* ── 2. RESET & BASE ─────────────────────────────────────────── */
+/*  2. RESET & BASE*/
 
 *,
 *::before,
@@ -113,7 +113,7 @@ img {
 }
 
 
-/* ── 3. COMMON CONTAINER ──────────────────────────────────────── */
+/*  3. COMMON CONTAINER  */
 
 .container {
   width: 90%;
@@ -123,7 +123,7 @@ img {
 }
 
 
-/* ── 4. NAVBAR ────────────────────────────────────────────────── */
+/*  4. NAVBAR */
 
 .navbar {
   position: sticky;
@@ -142,7 +142,7 @@ img {
   margin: 0 auto;
   display: flex;
   align-items: center;
-  /* flex-start: logo anchors left; margins handle right-alignment */
+
   justify-content: flex-start;
   padding: 14px 0;
   position: relative;
@@ -164,7 +164,7 @@ img {
   color: var(--accent);
 }
 
-/* ── Hamburger button (visible only on mobile) ── */
+/*  Hamburger button (visible only on mobile)  */
 .menu-toggle {
   display: flex;
   /* shown on mobile */
@@ -178,10 +178,7 @@ img {
   font-size: 26px;
   line-height: 1;
   flex-shrink: 0;
-  /*
-    Pushes hamburger + nav-right (everything after it) to the far right.
-    Mobile layout: [Aakarsh.dev] ───── [☰] [🌙]
-  */
+  
   margin-left: auto;
   transition: color 0.3s;
 }
@@ -191,34 +188,23 @@ img {
   border-radius: 4px;
 }
 
-/*
-  .nav-right — the right-side group: nav links + theme toggle.
-  MOBILE : nav-links is the hidden fullscreen overlay; only the theme
-           toggle is visible. Sits right next to the hamburger.
-  DESKTOP: full inline nav-links + theme toggle on one line, pushed
-           to the far right via margin-left:auto (see 600px media query).
-*/
+
 .nav-right {
   display: flex;
   align-items: center;
   gap: 12px;
-  /* space between last nav link and toggle */
-  /* On mobile: small gap from hamburger; desktop overrides below */
+ 
   margin-left: 8px;
 }
 
-/* Nav links list
-   MOBILE : hidden — the new .mobile-overlay handles the mobile menu.
-   DESKTOP: reset to an inline flex row in the 600px+ media query below.
-*/
+
 .nav-links {
   list-style: none;
-  /* Hidden on mobile — shown as inline row on 600px+ */
+  
   display: none;
 }
 
-/* When the overlay is open, we don't need nav-links to show —
-   the .mobile-nav-links inside .mobile-menu-card handles that. */
+
 
 .nav-links li a {
   position: relative;
@@ -231,7 +217,7 @@ img {
   transition: color 0.3s ease;
 }
 
-/* Animated underline on hover (desktop only) */
+
 .nav-links li a::after {
   content: "";
   position: absolute;
@@ -252,25 +238,18 @@ img {
 }
 
 
-/* ═══════════════════════════════════════════════════════════════
-   GLASSMORPHISM MOBILE OVERLAY
-   ── Activated when .overlay-open is added to #mobile-overlay by JS.
-   ── Covers the full screen with a dark blurred backdrop.
-   ── Contains a centered frosted-glass card with profile + nav links.
-   ═══════════════════════════════════════════════════════════════ */
 
-/* Full-screen dark + blurred backdrop */
+
+
 .mobile-overlay {
   position: fixed;
   inset: 0;
-  /* top/right/bottom/left: 0 */
+ 
   z-index: 2000;
-  /* above everything */
 
-  /* Dark semi-transparent layer */
   background: rgba(0, 0, 0, 0.55);
 
-  /* Glassmorphism blur behind the overlay */
+  
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
 
@@ -311,7 +290,6 @@ img {
   transform: scale(0.82);
   transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 
-  /* Prevent overlay click from propagating through the card */
   cursor: default;
 }
 
@@ -319,7 +297,7 @@ img {
   transform: scale(1);
 }
 
-/* Close (✕) button — top-right of the card */
+
 .mobile-close {
   position: absolute;
   top: 16px;
@@ -344,7 +322,7 @@ img {
   transform: scale(1.1) rotate(90deg);
 }
 
-/* Circular profile image inside the card */
+
 .mobile-profile {
   margin-bottom: 24px;
 }
@@ -359,7 +337,7 @@ img {
   display: block;
 }
 
-/* Nav links inside the glassmorphism card */
+
 .mobile-nav-links {
   list-style: none;
   display: flex;
@@ -419,7 +397,7 @@ img {
 }
 
 
-/* ── 5. THEME TOGGLE BUTTON ───────────────────────────────────── */
+/*  5. THEME TOGGLE BUTTON ─ */
 
 .theme-toggle {
   display: flex;
@@ -447,7 +425,7 @@ img {
 }
 
 
-/* ── 6. HERO SECTION ─────────────────────────────────────────── */
+/*  6. HERO SECTION*/
 
 .home {
   min-height: 60vh;
@@ -483,14 +461,14 @@ img {
 
 .home-text p {
   font-size: 16px;
-  /* MOBILE base */
+
   line-height: 1.7;
   color: var(--text-muted);
   max-width: 560px;
   margin: 0 auto;
 }
 
-/* CTA button (optional — hero buttons if added later) */
+
 .btn {
   display: inline-block;
   padding: 10px 24px;
@@ -512,12 +490,12 @@ img {
 
 .home-img {
   order: -1;
-  /* image first on mobile */
+
 }
 
 .home-img img {
   width: 160px;
-  /* MOBILE base */
+
   height: 160px;
   border-radius: 50%;
   object-fit: cover;
@@ -526,7 +504,7 @@ img {
 }
 
 
-/* ── 7. GLOBAL HEADINGS / PARAGRAPHS ──────────────────────────── */
+
 
 h1 {
   color: var(--accent);
@@ -558,7 +536,7 @@ h6 {
 }
 
 
-/* ── 8. SECTION TITLES ────────────────────────────────────────── */
+/*  8. SECTION TITLES  */
 
 section {
   padding-top: 0;
@@ -583,7 +561,7 @@ section {
 }
 
 
-/* ── 9. SOCIAL ICONS (HERO / ABOUT) ───────────────────────────── */
+
 
 .social {
   display: flex;
@@ -609,7 +587,7 @@ section {
 }
 
 
-/* ── 10. SOCIAL LINKS (CONTACT PAGE) ─────────────────────────── */
+/*  10. SOCIAL LINKS (CONTACT PAGE) ─ */
 
 .social-links {
   margin-top: 36px;
@@ -643,7 +621,7 @@ section {
 }
 
 
-/* ── 11. TECH STACK SECTION ───────────────────────────────────── */
+/*  11. TECH STACK SECTION ─ */
 
 .techstack {
   padding: 60px 20px;
@@ -678,7 +656,7 @@ section {
 }
 
 
-/* ── 12. ABOUT SECTION ────────────────────────────────────────── */
+/* 12. ABOUT SECTION */
 
 .about .about-container .section-title {
   color: var(--accent);
@@ -710,9 +688,9 @@ section {
 }
 
 
-/* ── 13. PROJECT CARDS ────────────────────────────────────────── */
+/*  13. PROJECT CARDS  */
 
-/* Outer wrapper that holds the grid */
+
 .projects-wrapper {
   width: 90%;
   max-width: 1100px;
@@ -798,7 +776,7 @@ section {
 }
 
 
-/* ── 14. CONTACT PAGE ─────────────────────────────────────────── */
+/*  14. CONTACT PAGE*/
 
 .contact p {
   padding: 40px 16px;
@@ -806,7 +784,7 @@ section {
 }
 
 
-/* ── 15. FOOTER ───────────────────────────────────────────────── */
+/*  15. FOOTER ─ */
 
 footer {
   text-align: center;
@@ -814,31 +792,25 @@ footer {
 }
 
 
-/* ══════════════════════════════════════════════════════════════
-   MEDIA QUERIES — Mobile-First (min-width breakpoints)
-   ══════════════════════════════════════════════════════════════ */
 
 
-/* ── Tablet & up: 600px+ ──────────────────────────────────────── */
+
 @media (min-width: 600px) {
 
-  /* Hide hamburger — show normal inline nav */
+ 
   .menu-toggle {
     display: none;
   }
 
-  /*
-    On desktop the hamburger is gone, so .nav-right needs its own
-    margin-left:auto to push itself (links + toggle) to the far right.
-  */
+  
   .nav-right {
     margin-left: auto;
   }
 
-  /* Reset mobile overlay to an inline flex row */
+  
   .nav-links {
     display: flex;
-    /* override the mobile display:none */
+    
     position: static;
     width: auto;
     height: auto;
@@ -855,7 +827,7 @@ footer {
     margin-left: 0;
   }
 
-  /* Hide the glassmorphism overlay on desktop — it's mobile-only */
+ 
   .mobile-overlay {
     display: none !important;
   }
@@ -881,7 +853,7 @@ footer {
     width: 100%;
   }
 
-  /* Close button not visible in desktop mode */
+
   .nav-close {
     display: none !important;
   }
@@ -950,7 +922,7 @@ footer {
 }
 
 
-/* ── Desktop: 1024px+ ─────────────────────────────────────────── */
+/*  Desktop: 1024px+*/
 @media (min-width: 1024px) {
 
   /* Logo */
@@ -1046,7 +1018,7 @@ footer {
 }
 
 
-/* ── Large Desktop: 1280px+ ───────────────────────────────────── */
+/*  Large Desktop: 1280px+ ─ */
 @media (min-width: 1280px) {
   .home-img img {
     width: 320px;
