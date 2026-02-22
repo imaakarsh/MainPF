@@ -118,6 +118,7 @@ body {
   min-height: 60vh;
   display: flex;
   align-items: center;
+  padding-bottom: 0%;
 }
 
 .home-container {
@@ -128,7 +129,7 @@ body {
   justify-content: space-between;
   align-items: center;
   gap: 50px;
-  padding: 20px 0;
+  padding: 70px 0;
 }
 
 @media (max-width: 480px) {
@@ -478,9 +479,9 @@ p{
 }
 
 /* About Section */
-.about {
+/* .about {
   padding: 60px 20px;
-}
+} */
 
 .about .about-container .section-title{
   color: #f89238;
@@ -548,7 +549,7 @@ p{
 }
 
 section {
-  padding: 60px 0;
+  /* padding: 60px 0; */
   padding-top: 0px; 
 }
 
@@ -676,5 +677,5 @@ h6{
 
 footer{
   text-align: center;
-  padding: 5px 0;
+  /* padding: 5px 0; */
 }
