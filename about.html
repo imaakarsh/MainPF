@@ -1,53 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
+
 <head>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Apply saved theme BEFORE CSS loads to prevent a flash of wrong theme -->
+  <script>
+    (function () {
+      var t = localStorage.getItem('theme') ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
   <link rel="stylesheet" href="style.css">
   <link rel="shortcut icon" href="assets/favicon.jpg" type="image/x-icon">
-      <title>About - Aakarsh</title>
+  <title>About - Aakarsh</title>
 </head>
+
 <body>
   <nav class="navbar">
-  <div class="nav-container">
-    <a href="index.html" class="logo">Aakarsh.dev</a>
-    
-    
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="project.html">Projects</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </div>
-</nav>
+    <div class="nav-container">
+      <a href="index.html" class="logo">Aakarsh.dev</a>
 
 
-    <section class="about">
-  <div class="about-container">
-    <h1 class="section-title" >About Me</h1>
-    <p class="section-text">
-      I’m a Full Stack Developer who loves building fast, responsive, and user-focused web applications. I enjoy solving real-world problems through clean code, modern technologies, and thoughtful design. Currently focused on improving my skills and creating impactful projects.
-    </p>
-  </div>
-</section>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="project.html">Projects</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <!-- Theme toggle button -->
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">🌙</button>
+    </div>
+  </nav>
 
-    <section class="techstack">
-  <h2>TechStack</h2>
 
-  <div class="tech-icons">
-    <img src="assets/letter-c.png" alt="C">
-    <img src="assets/python.png" alt="Python">
-    <img src="assets/html-5.png" alt="HTML">
-    <img src="assets/css-3.png" alt="CSS">
-    <img src="assets/js.png" alt="JavaScript">
-    <img src="assets/node.png" alt="Node.js">
-    <img src="assets/tailwind.png" alt="Tailwind">
-    <img src="assets/githubb.png" alt="Github">
-    <img src="assets/git.png" alt="Git">
-  </div>
-</section>
+  <section class="about">
+    <div class="about-container">
+      <h1 class="section-title">About Me</h1>
+      <p class="section-text">
+        I’m a Full Stack Developer who loves building fast, responsive, and user-focused web applications. I enjoy
+        solving real-world problems through clean code, modern technologies, and thoughtful design. Currently focused on
+        improving my skills and creating impactful projects.
+      </p>
+    </div>
+  </section>
 
-<!-- Social
+  <section class="techstack">
+    <h2>TechStack</h2>
+
+    <div class="tech-icons">
+      <img src="assets/letter-c.png" alt="C">
+      <img src="assets/python.png" alt="Python">
+      <img src="assets/html-5.png" alt="HTML">
+      <img src="assets/css-3.png" alt="CSS">
+      <img src="assets/js.png" alt="JavaScript">
+      <img src="assets/node.png" alt="Node.js">
+      <img src="assets/tailwind.png" alt="Tailwind">
+      <img src="assets/githubb.png" alt="Github">
+      <img src="assets/git.png" alt="Git">
+    </div>
+  </section>
+
+  <!-- Social
   <section>
   <div class="social">
   <a href="https://www.instagram.com/aakarsh.wtf/"><img src="assets/instagram.png" alt=""></a>
@@ -58,9 +73,11 @@
   </div>
   </section>   -->
 
-<footer>
+  <footer>
     <h6>© 2026 Created with ❤️ by Aakarsh.</h6>
   </footer>
+  <!-- Theme toggle script -->
+  <script src="theme.js"></script>
 </body>
-</html>
 
+</html>

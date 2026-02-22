@@ -1,45 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="assets/favicon.jpg" type="image/x-icon">
-    <title>Aakarsh - Full Stack Developer</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Apply saved theme BEFORE CSS loads to prevent a flash of wrong theme -->
+  <script>
+    (function () {
+      var t = localStorage.getItem('theme') ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="assets/favicon.jpg" type="image/x-icon">
+  <title>Aakarsh - Full Stack Developer</title>
 </head>
+
 <body>
-    <nav class="navbar">
-  <div class="nav-container">
-    <a href="index.html" class="logo">Aakarsh.dev</a>
-    
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="project.html">Projects</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </div>
-</nav>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">Aakarsh.dev</a>
 
-<section id="home" class="home">
-  <div class="home-container">
-    
-    <div class="home-text">
-      <h1>Hi, I'm <span>Aakarsh</span></h1>
-      <p>
-        A passionate Full Stack Developer. I create dynamic and responsive web
-        applications and love building modern user experiences.
-      </p>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="project.html">Projects</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <!-- Theme toggle button: 🌙 in dark mode, ☀️ in light mode -->
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">🌙</button>
     </div>
+  </nav>
 
-    <div class="home-img">
-      <img src="assets/favicon.jpg" alt="Profile">
+  <section id="home" class="home">
+    <div class="home-container">
+
+      <div class="home-text">
+        <h1>Hi, I'm <span>Aakarsh</span></h1>
+        <p>
+          A passionate Full Stack Developer. I create dynamic and responsive web
+          applications and love building modern user experiences.
+        </p>
+      </div>
+
+      <div class="home-img">
+        <img src="assets/favicon.jpg" alt="Profile">
+      </div>
+
     </div>
+  </section>
 
-  </div>
-</section>
-
-<!-- Social -->
+  <!-- Social -->
   <!-- <section>
   <div class="social">
   <a href="https://www.instagram.com/aakarsh.wtf/"><img src="assets/instagram.png" alt=""></a>
@@ -59,19 +71,22 @@
   </div>
 </nav> -->
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
 
-  
-<br>
-<br>
+
+  <br>
+  <br>
   <footer>
     <h6>© 2026 Created with ❤️ by Aakarsh.</h6>
   </footer>
+  <!-- Theme toggle script: handles localStorage, system preference, icon swap -->
+  <script src="theme.js"></script>
 </body>
+
 </html>
