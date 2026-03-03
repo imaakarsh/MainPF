@@ -151,21 +151,30 @@ ul {
   transform: scale(0.93);
 }
 
-/* Desktop nav links */
+/* Nav links — always visible */
 .nav-links {
-  display: none;
+  display: flex;
   flex-direction: row;
-  gap: 6px;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-left: auto;
 }
 
 .nav-links li a {
   display: block;
-  padding: 6px 14px;
+  padding: 5px 8px;
   border-radius: 8px;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   color: var(--text-muted);
   transition: background 0.2s, color 0.2s;
+}
+
+@media (min-width: 480px) {
+  .nav-links li a {
+    padding: 6px 14px;
+    font-size: 14px;
+  }
 }
 
 .nav-links li a:hover {
@@ -1366,18 +1375,6 @@ footer {
 @media (min-width: 600px) {
   .menu-toggle {
     display: none;
-  }
-
-  .nav-links {
-    display: flex;
-  }
-
-  .nav-right {
-    margin-left: auto;
-  }
-
-  .mobile-overlay {
-    display: none !important;
   }
 
   .proj-thumb {
