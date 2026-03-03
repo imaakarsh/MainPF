@@ -9,7 +9,7 @@
   --text: #f0f0f0;
   --text-muted: #888;
   --text-subtle: #555;
-  --accent: #f89238;
+  --accent: lab(48.496% 0 0);
   --accent-muted: rgba(248, 146, 56, 0.15);
   --shadow-card: 0 4px 0 0 rgba(0, 0, 0, 0.6);
   --shadow-lift: 0 1px 0 0 rgba(0, 0, 0, 0.6);
@@ -355,6 +355,7 @@ ul {
   padding: 64px 0 48px;
   justify-content: space-between;
   display: block;
+  color: whitesmoke
 }
 
 .hero-inner {
@@ -367,7 +368,7 @@ ul {
   font-size: 3rem;
   font-weight: 700;
   line-height: 1.2;
-  color: #ffffffe1;
+  color: lab(48.496% 0 0);
   text-align: center;
   margin-top: 6px;
 
@@ -378,7 +379,7 @@ ul {
 }
 
 .highlight {
-  color: var(--accent);
+  color: whitesmoke;
 }
 
 
@@ -475,8 +476,8 @@ ul {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   border-radius: 9px;
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -485,8 +486,8 @@ ul {
 }
 
 .social-icon img {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   object-fit: contain;
   filter: grayscale(1) opacity(0.6);
   transition: filter 0.2s;
@@ -1663,4 +1664,12 @@ footer {
   color: var(--text-muted);
   box-shadow: var(--shadow-card);
   transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.15s, box-shadow 0.15s;
+}
+
+.contact-btn:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-hover);
+  color: var(--text);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lift);
 }
