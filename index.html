@@ -4,96 +4,326 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Aakarsh — Full Stack Developer. Building fast, responsive, and user-focused web applications with modern technologies.">
+  <title>Aakarsh — Full Stack Developer</title>
+
   
-  <script>
-    (function () {
-      var t = localStorage.getItem('theme') ||
-        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      document.documentElement.setAttribute('data-theme', t);
-    })();
-  </script>
+
   <link rel="stylesheet" href="style.css">
   <link rel="shortcut icon" href="assets/favicon.jpg" type="image/x-icon">
-  <title>Aakarsh - Full Stack Developer</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
 </head>
 
 <body>
-  <script src="theme.js"></script>
-  <!--NAVBAR-->
+ 
+
+  <!-- NAVBAR -->
   <nav class="navbar">
     <div class="nav-container">
 
-      <a href="index.html" class="logo">Aakarsh.dev</a>
+      <!-- Avatar logo -->
+      <a href="index.html" class="nav-avatar" aria-label="Home">
+        <img src="assets/favicon.jpg" alt="Aakarsh">
+      </a>
+
+      <!-- nav links -->
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
 
       
-      <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation menu" aria-expanded="false">
-        ☰
-      </button>
-
-      
-      <div class="nav-right">
-        <ul class="nav-links" id="nav-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="project.html">Projects</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">🌙</button>
-      </div>
 
     </div>
   </nav>
 
-  
+  <!-- Mobile overlay menu -->
   <div class="mobile-overlay" id="mobile-overlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
-
-    
     <div class="mobile-menu-card" id="mobile-menu-card">
-
-      <!-- Close button -->
       <button class="mobile-close" id="mobile-close" aria-label="Close navigation menu">✕</button>
-
-      <!-- Circular profile image -->
       <div class="mobile-profile">
         <img src="assets/favicon.jpg" alt="Aakarsh profile photo">
       </div>
-
-      <!-- Nav links  -->
       <ul class="mobile-nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="project.html">Projects</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
-
     </div>
   </div>
 
-  <!-- HERO SECTION -->
-  <section id="home" class="home">
-    <div class="home-container">
+  <!-- PAGE WRAPPER -->
+  <main class="page-wrapper">
 
-      <div class="home-text">
-        <h1>Hi, I'm <span>Aakarsh</span></h1>
-        <p>
-          A passionate Full Stack Developer. I create dynamic and responsive web
-          applications and love building modern user experiences.
+    <!-- HERO SECTION  -->
+    <section id="home" class="hero-section">
+      <div class="hero-inner">
+
+        <h1 class="hero-heading" style="margin-top: 60px;">
+          Hi, I'm <span class="highlight"> Aakarsh </span>
+        </h1>
+        <h1 class="hero-heading" style="margin-top: 6px;">A Full Stack web developer.</h1>
+
+        <p class="hero-bio">
+          I build fast, scalable, and user-focused web apps using
+          <span class="kw">JavaScript</span>,
+          <span class="kw">Node.js</span>,
+          <span class="kw">React</span>, and
+          <span class="kw">Python</span>.
+          Passionate about clean code, great design, and shipping products people love.
         </p>
+
+        <!-- CTA Buttons -->
+        <div class="hero-cta">
+          <a  download class="btn-outline" id="resume-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            Resume / CV
+          </a>
+          <a href="contact.html" class="btn-solid" id="contact-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.06 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z" />
+            </svg>
+            Get in touch
+          </a>
+        </div>
+
+        <!-- Social Icons -->
+        <div class="hero-socials">
+          <a href="https://github.com/imaakarsh" target="_blank" rel="noopener" aria-label="GitHub" class="social-icon">
+            <img src="assets/githubb.png" alt="GitHub">
+          </a>
+          <a href="https://www.linkedin.com/in/imaakarsh/" target="_blank" rel="noopener" aria-label="LinkedIn"
+            class="social-icon">
+            <img src="assets/linkedin.png" alt="LinkedIn">
+          </a>
+          <a href="https://www.instagram.com/imaakarsh/" target="_blank" rel="noopener" aria-label="Instagram"
+            class="social-icon">
+            <img src="assets/instagram.png" alt="Instagram">
+          </a>
+          <a href="mailto:contact@aakarsh.dev" aria-label="Email" class="social-icon">
+            <img src="assets/mail.png" alt="Email">
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+
+
+    <!-- ── CURRENT FOCUS ── -->
+    <section class="focus-section" aria-label="Current focus">
+      <div class="focus-card" id="current-focus-card">
+        <div class="focus-left">
+          <span class="focus-dot"></span>
+          <span class="focus-label">CURRENT FOCUS</span>
+        </div>
+        <span class="focus-value">Building & shipping projects</span>
+        <a href="project.html" class="focus-link" aria-label="View projects">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ── TECH STACK ── -->
+    <section class="section" id="tech-stack" aria-label="Tech stack">
+      <p class="section-eyebrow">Expertise</p>
+      <h2 class="section-heading">Tech Stack &amp; Tools</h2>
+      <div class="tech-grid">
+        <div class="tech-item" title="C">
+          <img src="assets/letter-c.png" alt="C programming language">
+          <span>C</span>
+        </div>
+        <div class="tech-item" title="Python">
+          <img src="assets/python.png" alt="Python">
+          <span>Python</span>
+        </div>
+        <div class="tech-item" title="HTML5">
+          <img src="assets/html-5.png" alt="HTML5">
+          <span>HTML5</span>
+        </div>
+        <div class="tech-item" title="CSS3">
+          <img src="assets/css-3.png" alt="CSS3">
+          <span>CSS3</span>
+        </div>
+        <div class="tech-item" title="JavaScript">
+          <img src="assets/js.png" alt="JavaScript">
+          <span>JavaScript</span>
+        </div>
+        <div class="tech-item" title="Node.js">
+          <img src="assets/node.png" alt="Node.js">
+          <span>Node.js</span>
+        </div>
+        <div class="tech-item" title="Tailwind CSS">
+          <img src="assets/tailwind.png" alt="Tailwind CSS">
+          <span>Tailwind</span>
+        </div>
+        <div class="tech-item" title="Git">
+          <img src="assets/git.png" alt="Git">
+          <span>Git</span>
+        </div>
+        <div class="tech-item" title="GitHub">
+          <img src="assets/githubb.png" alt="GitHub">
+          <span>GitHub</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT / EXPERIENCE  -->
+    <section class="section" id="about" aria-label="About and experience">
+      <p class="section-eyebrow">Career Path</p>
+      <h2 class="section-heading">Experience &amp; Impact</h2>
+
+      <div class="experience-card" id="experience-card">
+        <div class="exp-header">
+          <div class="exp-meta">
+            <span class="exp-role">Full Stack Developer</span>
+            <span class="exp-separator">·</span>
+            <span class="exp-company">Personal Projects</span>
+          </div>
+          <span class="exp-date">2026 — Present</span>
+        </div>
+        <ul class="exp-bullets">
+          <li>Built and deployed responsive full-stack web applications using <strong>HTML, CSS, JS</strong></li>
+          <li>Shipped a Pomodoro productivity app (FocusFlow) and a developer tool landing page clone</li>
+          <li>Focused on clean UI, accessibility, and performance across all projects</li>
+          <li>Explored <strong>React</strong> and modern frontend tooling to expand the stack</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- FEATURED PROJECTS  -->
+    <section class="section" id="projects" aria-label="Featured projects">
+      <p class="section-eyebrow">Featured</p>
+      <div class="projects-header">
+        <h2 class="section-heading">Projects</h2>
+        <a href="https://github.com/imaakarsh" target="_blank" rel="noopener" class="view-all-link"
+          id="view-all-github">
+          View All on GitHub
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="7" y1="17" x2="17" y2="7" />
+            <polyline points="7 7 17 7 17 17" />
+          </svg>
+        </a>
       </div>
 
-      <div class="home-img">
-        <img src="assets/favicon.jpg" alt="Profile photo of Aakarsh">
+      <div class="projects-grid">
+
+        <!-- Project Card 1 -->
+        <div class="proj-card" id="proj-focusflow">
+          <a href="https://focusflow247.vercel.app/" target="_blank" rel="noopener" class="proj-thumb">
+            <img src="assets/focusflow.png" alt="FocusFlow pomodoro app" loading="lazy">
+          </a>
+          <div class="proj-body">
+            <div class="proj-title-row">
+              <h3 class="proj-name">FocusFlow</h3>
+              <div class="proj-links">
+                <a href="https://focusflow247.vercel.app/" target="_blank" rel="noopener" aria-label="Live site"
+                  class="proj-icon-link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="2" y1="12" x2="22" y2="12" />
+                    <path
+                      d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                  </svg>
+                </a>
+                <a href="https://github.com/imaakarsh/focusflow" target="_blank" rel="noopener" aria-label="View repo"
+                  class="proj-icon-link">
+                  <img src="assets/githubb.png" alt="GitHub">
+                </a>
+              </div>
+            </div>
+            <p class="proj-desc">A sleek Pomodoro productivity app with customizable focus, short break, and long break
+              durations. Features a task manager, session tracking, and a clean dark-mode UI.</p>
+            <div class="proj-tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Card 2 -->
+        <div class="proj-card" id="proj-cursor-clone">
+          <a href="https://imaakarsh.github.io/DevToolLandingPage-Cursor/" target="_blank" rel="noopener"
+            class="proj-thumb">
+            <img src="assets/cursor.png" alt="Cursor landing page clone" loading="lazy">
+          </a>
+          <div class="proj-body">
+            <div class="proj-title-row">
+              <h3 class="proj-name">DevTool Landing Page</h3>
+              <div class="proj-links">
+                <a href="https://imaakarsh.github.io/DevToolLandingPage-Cursor/" target="_blank" rel="noopener"
+                  aria-label="Live site" class="proj-icon-link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="2" y1="12" x2="22" y2="12" />
+                    <path
+                      d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                  </svg>
+                </a>
+                <a href="https://github.com/imaakarsh/DevToolLandingPage-Cursor" target="_blank" rel="noopener"
+                  aria-label="View repo" class="proj-icon-link">
+                  <img src="assets/githubb.png" alt="GitHub">
+                </a>
+              </div>
+            </div>
+            <p class="proj-desc">A pixel-perfect responsive clone of the Cursor landing page. Focused on modern design,
+              layout structure, and smooth user experience using pure HTML & CSS.</p>
+            <div class="proj-tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Card 3 -->
+        <div class="proj-card" id="proj-blogs">
+          <a href="#" class="proj-thumb">
+            <img src="assets/project11.png" alt="Blogs website" loading="lazy">
+          </a>
+          <div class="proj-body">
+            <div class="proj-title-row">
+              <h3 class="proj-name">Blogs Website</h3>
+              <div class="proj-links">
+                <a href="#" aria-label="View repo" class="proj-icon-link">
+                  <img src="assets/githubb.png" alt="GitHub">
+                </a>
+              </div>
+            </div>
+            <p class="proj-desc">A responsive blog platform showcasing the latest tech articles and gadget updates.
+              Built with a clean UI for smooth navigation and an engaging reading experience.</p>
+            <div class="proj-tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+            </div>
+          </div>
+        </div>
+
       </div>
+    </section>
 
-    </div>
-  </section>
+    
 
-  <!--FOOTER-->
-  <footer>
-    <h6>© 2026 Created with ❤️ by Aakarsh.</h6>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p class="footer-text">© 2026 Crafted with ❤️ by <strong>Aakarsh</strong></p>
   </footer>
-
-
 
 </body>
 
