@@ -1,9 +1,10 @@
 @import "tailwindcss";
+
 :root,
 [data-theme="dark"] {
-  --bg: #0a0a0a;
-  --bg-card: #111113;
-  --bg-card-hover: #161619;
+  --bg: #161618;
+  --bg-card: #161618;
+  --bg-card-hover: #161618;
   --border: rgba(255, 255, 255, 0.08);
   --border-hover: rgba(255, 255, 255, 0.15);
   --text: #f0f0f0;
@@ -13,7 +14,7 @@
   --accent-muted: rgba(248, 146, 56, 0.15);
   --shadow-card: 0 4px 0 0 rgba(0, 0, 0, 0.6);
   --shadow-lift: 0 1px 0 0 rgba(0, 0, 0, 0.6);
-  --nav-bg: rgba(10, 10, 10, 0.85);
+  --nav-bg: rgba(10, 10, 10, 0.3);
   --toggle-bg: rgba(255, 255, 255, 0.08);
   --toggle-border: rgba(255, 255, 255, 0.12);
   --menu-bg: rgba(15, 15, 15, 0.97);
@@ -37,7 +38,7 @@
   --accent-muted: rgba(212, 117, 15, 0.1);
   --shadow-card: 0 4px 0 0 rgba(0, 0, 0, 0.12);
   --shadow-lift: 0 1px 0 0 rgba(0, 0, 0, 0.08);
-  --nav-bg: rgba(255, 255, 255, 0.85);
+  --nav-bg: rgba(255, 255, 255, 0.3);
   --toggle-bg: rgba(0, 0, 0, 0.05);
   --toggle-border: rgba(0, 0, 0, 0.1);
   --menu-bg: rgba(250, 250, 250, 0.98);
@@ -112,9 +113,9 @@ ul {
   left: 0;
   width: 100%;
   z-index: 1000;
-  background: var(--nav-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(10, 10, 10, 0);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
 }
 
@@ -391,7 +392,7 @@ ul {
   max-width: 620px;
   margin: 0 auto;
   text-align: center;
-  
+
 }
 
 /* Keyword highlight boxes */
@@ -632,7 +633,6 @@ ul {
 }
 
 
-/*  GENERIC SECTION STYLES  */
 
 .section {
   margin-top: 56px;
@@ -1386,7 +1386,6 @@ footer {
     height: 200px;
   }
 
-  /* Other pages - 2 col projects */
   .main_container {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.75rem;
@@ -1431,7 +1430,58 @@ footer {
 }
 
 
-/* ── ABOUT ME SECTION ── */
+/* ABOUT ME SECTION*/
+
+/*  PSST CLICK ME HINT  */
+.click-me-hint {
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Caveat', cursive;
+  font-size: 26px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0.8;
+  animation: float-hint 3s ease-in-out infinite;
+  z-index: 10;
+}
+
+@keyframes float-hint {
+  0%, 100% { transform: translateY(-50%) translateX(0); }
+  50% { transform: translateY(-50%) translateX(-6px); }
+}
+
+.hint-arrow {
+  width: 38px;
+  height: 38px;
+  color: var(--text-muted);
+  overflow: visible;
+}
+
+@media (max-width: 800px) {
+  .click-me-hint {
+    top: -30px;
+    right: auto;
+    left: 0%;
+    transform: translateX(-50%);
+    margin-right: 0;
+    flex-direction: column;
+  }
+  @keyframes float-hint {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-6px); }
+  }
+  .hint-arrow {
+    transform: rotate(90deg);
+  }
+}
+
 
 .about-card {
   display: flex;
@@ -1445,7 +1495,6 @@ footer {
   transition: background 0.2s, border-color 0.2s;
 }
 
-/* Square avatar with yellow-ish background like the screenshot */
 .about-avatar-wrap {
   flex-shrink: 0;
   width: 200px;
@@ -1461,7 +1510,15 @@ footer {
   height: 100%;
   object-fit: cover;
   display: block;
+  content: url("assets/icon.jpg");
+  transition: transform 0.4s ease-in-out, filter 0.3s ease;
 }
+
+.about-avatar.avatar-clicked {
+  content: url("assets/aakarsh.png");
+}
+
+
 
 .about-info {
   flex: 1;
@@ -1535,7 +1592,6 @@ footer {
   filter: grayscale(0) opacity(1);
 }
 
-/* Responsive: stack vertically on small screens */
 @media (max-width: 520px) {
   .about-card {
     flex-direction: column;
@@ -1673,3 +1729,5 @@ footer {
   transform: translateY(-3px);
   box-shadow: var(--shadow-lift);
 }
+
+.

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 
 <head>
@@ -16,7 +16,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet">
 </head>
 
@@ -349,8 +349,17 @@
 
       <div class="about-card">
         <!-- Avatar -->
-        <div class="about-avatar-wrap" style="justify-self: center;align-items: center;">
-          <img src="assets/icon.jpg" alt="Aakarsh" class="about-avatar">
+        <div class="avatar-container" style="position: relative;">
+          <div class="click-me-hint">
+            click me!
+            <svg class="hint-arrow" width="40" height="40" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10,60 Q50,20 90,50" />
+              <polyline points="70,35 90,50 70,65" />
+            </svg>
+          </div>
+          <div class="about-avatar-wrap" style="justify-self: center;align-items: center;">
+            <img src="assets/aakarsh.png" alt="Aakarsh" class="about-avatar" id="about-avatar-img" onclick="toggleAvatar()" style="cursor: pointer;">
+          </div>
         </div>
 
         <!-- Info -->
@@ -405,6 +414,12 @@
     <p class="footer-text">© 2026 Crafted with ❤️ by <strong>Aakarshdev.me</strong></p>
   </footer>
 
+  <script>
+    function toggleAvatar() {
+      const avatarBtn = document.getElementById('about-avatar-img');
+      avatarBtn.classList.toggle('avatar-clicked');
+    }
+  </script>
 </body>
 
 </html>
