@@ -158,7 +158,7 @@ ul {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 4px;
+  gap: 1px;
   margin-left: auto;
 }
 
@@ -799,6 +799,41 @@ ul {
 .exp-bullets li strong {
   color: var(--text);
   font-weight: 600;
+}
+
+@media (max-width: 520px) {
+  .experience-card {
+    padding: 18px 16px;
+  }
+
+  .exp-header {
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+
+  .exp-role {
+    font-size: 14px;
+  }
+
+  .exp-company,
+  .exp-date {
+    font-size: 12px;
+  }
+
+  .exp-bullets {
+    gap: 8px;
+  }
+
+  .exp-bullets li {
+    gap: 8px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .exp-bullets li::before {
+    font-size: 16px;
+    line-height: 1.25;
+  }
 }
 
 /* sneek peak */
