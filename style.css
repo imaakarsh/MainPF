@@ -2354,27 +2354,58 @@ footer {
   box-shadow: var(--shadow-lift);
 }
 
-/* Calendar image */
-.gh-activity-calendar {
-  width: 100%;
-  overflow: hidden;
-  border-radius: 10px;
+/* Calendar JS Grid Native Dark Mode */
+.gh-calendar-wrapper {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
+.gh-calendar-wrapper::-webkit-scrollbar { display: none; }
 
-.gh-activity-img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 8px;
+.gh-calendar-months {
+  height: 20px;
+  font-size: 11px;
+  color: #7d8590;
+  white-space: nowrap;
 }
-
-[data-theme="dark"] .gh-activity-img {
-  filter: brightness(0.9) contrast(1.08);
+.gh-calendar-days {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 20px; 
 }
-
-[data-theme="light"] .gh-activity-img {
-  filter: brightness(0.85) contrast(1.15) saturate(1.1);
+.gh-calendar-days span {
+  height: 10px;
+  font-size: 10px;
+  line-height: 10px;
+  color: #7d8590;
 }
+.gh-calendar-grid {
+  display: flex;
+  gap: 4px;
+}
+.gh-column {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.gh-cell {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background: #161b22;
+  outline: 1px solid rgba(255,255,255,0.05);
+}
+.gh-empty { visibility: hidden; }
+.gh-level-0 { background: #161b22; outline: 1px solid rgba(255,255,255,0.05); }
+.gh-level-1 { background: #0e4429;  outline: none;}
+.gh-level-2 { background: #006d32;  outline: none;}
+.gh-level-3 { background: #26a641;  outline: none;}
+.gh-level-4 { background: #39d353;  outline: none;}
 
 /* Card footer: count text + legend */
 .gh-activity-footer {
@@ -2387,8 +2418,13 @@ footer {
 }
 
 .gh-legend-text {
-  font-size: 12px;
-  color: var(--text-subtle);
+  font-size: 11px;
+  color: #7d8590;
+  text-decoration: none;
+}
+
+.gh-learn-more:hover {
+  color: #2f81f7;
 }
 
 .gh-legend {

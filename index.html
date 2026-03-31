@@ -531,18 +531,31 @@
           </a>
         </div>
 
-        <!-- Calendar image -->
-        <div class="gh-activity-calendar">
-          <img id="gh-chart-img" src="https://ghchart.rshah.org/22c55e/imaakarsh"
-            alt="GitHub contribution calendar for imaakarsh" class="gh-activity-img" loading="lazy" />
+        <!-- Calendar Grid -->
+        <div class="gh-calendar-wrapper">
+          <div class="gh-calendar-days">
+            <span></span>
+            <span>Mon</span>
+            <span></span>
+            <span>Wed</span>
+            <span></span>
+            <span>Fri</span>
+            <span></span>
+          </div>
+          <div class="gh-activity-calendar" style="position: relative;">
+            <div class="gh-calendar-months" id="gh-calendar-months"></div>
+            <div class="gh-calendar-grid" id="gh-calendar-grid">
+              <!-- JS will populate -->
+            </div>
+          </div>
         </div>
 
         <!-- Footer: legend -->
         <div class="gh-activity-footer">
-          <span class="gh-legend-text" id="gh-footer-text">Loading contributions…</span>
+          <a href="https://docs.github.com/articles/why-are-my-contributions-not-showing-up-on-my-profile" target="_blank" class="gh-legend-text gh-learn-more">Learn how we count contributions</a>
           <div class="gh-legend">
             <span class="gh-legend-word">Less</span>
-            <span class="gh-dot" style="background:#161b22; border:1px solid #30363d;"></span>
+            <span class="gh-dot" style="background:#161b22; outline:1px solid rgba(255,255,255,0.05);"></span>
             <span class="gh-dot" style="background:#0e4429;"></span>
             <span class="gh-dot" style="background:#006d32;"></span>
             <span class="gh-dot" style="background:#26a641;"></span>
@@ -975,10 +988,56 @@
             });
 
             updateStats(totalVal, curStreak, longestStreak);
+            renderGitHubGrid(sorted);
           } catch (err) {
             console.warn('[GH Stats] Primary API failed, trying fallback…', err);
             tryFallback();
           }
+        }
+
+        function renderGitHubGrid(sorted) {
+          const gridEl = document.getElementById('gh-calendar-grid');
+          const monthsEl = document.getElementById('gh-calendar-months');
+          if (!gridEl || !sorted.length) return;
+          
+          const weeks = [];
+          let currentWeek = [];
+          
+          // Ensure first row is Sunday
+          const firstDayIndex = new Date(sorted[0].date).getDay();
+          for (let i = 0; i < firstDayIndex; i++) currentWeek.push(null);
+          
+          sorted.forEach(d => {
+            currentWeek.push(d);
+            if (currentWeek.length === 7) { weeks.push(currentWeek); currentWeek = []; }
+          });
+          if (currentWeek.length > 0) {
+            while (currentWeek.length < 7) currentWeek.push(null);
+            weeks.push(currentWeek);
+          }
+
+          let html = '';
+          let monthsHtml = '';
+          let lastMonth = -1;
+          
+          weeks.forEach((week, colIndex) => {
+            html += '<div class="gh-column">';
+            const firstValid = week.find(d => d !== null);
+            if (firstValid) {
+              const m = new Date(firstValid.date).getMonth();
+              if (m !== lastMonth) {
+                monthsHtml += `<span style="position: absolute; left: ${colIndex * 14}px;">${new Date(firstValid.date).toLocaleString('default', { month: 'short' })}</span>`;
+                lastMonth = m;
+              }
+            }
+            week.forEach(day => {
+              if (!day) html += '<div class="gh-cell gh-empty"></div>';
+              else html += `<div class="gh-cell gh-level-${day.level}" title="${day.count} contributions on ${day.date}"></div>`;
+            });
+            html += '</div>';
+          });
+          gridEl.innerHTML = html;
+          if (monthsEl) monthsEl.innerHTML = monthsHtml;
         }
 
         async function tryFallback() {
@@ -1001,12 +1060,8 @@
           const totalStat = document.getElementById('gh-total-stat'); // stat card
           const streakEl = document.getElementById('gh-streak');
           const longestEl = document.getElementById('gh-longest');
-          const footerEl = document.getElementById('gh-footer-text');
 
           if (!totalEl) return;
-
-          // Update footer text immediately
-          if (footerEl) footerEl.textContent = total.toLocaleString() + ' contributions in the last year';
 
           // Wait until stats are visible before animating
           const statsObserver = new IntersectionObserver((entries) => {
