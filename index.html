@@ -621,6 +621,14 @@
     <!-- FOOTER -->
     <footer class="site-footer">
       <p class="footer-text">© 2026 Crafted with ❤️ by <strong>Aakarshdev.me</strong></p>
+      <div class="visitor-badge" id="visitor-badge" aria-label="Visitor count">
+        <svg class="visitor-eye" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+          <circle cx="12" cy="12" r="3"/>
+        </svg>
+        <span id="visitor-count" class="visitor-count">—</span>
+        <span class="visitor-label">visitors</span>
+      </div>
     </footer>
 
     <script>
@@ -1120,6 +1128,74 @@
         fetchGitHubStats();
       })();
     </script>
+
+    <script>
+      /* Visitor Counter — auto-updates every 30 s */
+      (function () {
+        const NAMESPACE = 'aakarshdev-portfolio';
+        const KEY       = 'pageviews';
+        const POLL_MS   = 30_000; // refresh interval
+        const countEl   = document.getElementById('visitor-count');
+        let lastValue   = null;
+
+        /* Smooth number transition (only for small deltas on updates) */
+        function setCount(target, animate) {
+          if (!countEl) return;
+          if (!animate || lastValue === null) {
+            /* First load — roll-up from a bit below */
+            const duration = 1000;
+            const step = Math.max(1, Math.floor(target / (duration / 16)));
+            let current = Math.max(0, target - step * 20);
+            countEl.textContent = current.toLocaleString();
+            const timer = setInterval(() => {
+              current = Math.min(current + step, target);
+              countEl.textContent = current.toLocaleString();
+              if (current >= target) clearInterval(timer);
+            }, 16);
+          } else if (target !== lastValue) {
+            /* Subsequent updates — quick tick-up/down */
+            const diff = target - lastValue;
+            const steps = Math.abs(diff);
+            const dir   = Math.sign(diff);
+            let done    = 0;
+            let current = lastValue;
+            const timer = setInterval(() => {
+              current += dir;
+              countEl.textContent = current.toLocaleString();
+              if (++done >= steps) clearInterval(timer);
+            }, Math.max(16, Math.round(300 / steps)));
+          }
+          lastValue = target;
+        }
+
+        async function fetchCount(isFirst) {
+          try {
+            /* counterapi.dev — /up increments, bare path is read-only */
+            const endpoint = isFirst && !sessionStorage.getItem('vc_counted')
+              ? `https://api.counterapi.dev/v1/${NAMESPACE}/${KEY}/up`
+              : `https://api.counterapi.dev/v1/${NAMESPACE}/${KEY}`;
+
+            const res  = await fetch(endpoint, { cache: 'no-store' });
+            if (!res.ok) throw new Error('counterapi ' + res.status);
+            const data = await res.json();
+
+            if (isFirst && !sessionStorage.getItem('vc_counted')) {
+              sessionStorage.setItem('vc_counted', '1');
+            }
+
+            /* counterapi.dev returns { count: N } */
+            if (data.count != null) setCount(data.count, !isFirst);
+          } catch (err) {
+            console.warn('[Visitor Counter]', err);
+          }
+        }
+
+        /* Increment on first visit, then poll every 30 s (read-only) */
+        fetchCount(true);
+        setInterval(() => fetchCount(false), POLL_MS);
+      })();
+    </script>
+
 </body>
 
 </html>
