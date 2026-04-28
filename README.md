@@ -21,25 +21,30 @@ This is my personal portfolio website built with HTML, CSS, and TypeScript. The 
 
 - HTML5
 - CSS3
-- TypeScript
+- JavaScript (ES6+)
+- Tailwind CSS
+- Vite
 - Express
 - MongoDB
 - SQL
 - Vercel (Deployment)
-
 ## 📂 Project Structure
 
-markdown
+
 Portfolio/
-├ index.html      # Home page
-├ style.css       # Styling and layout
-├ public/
-│  ├ assets/      # Images and icons
-│  └ dist/        # Compiled JavaScript output
-├ src/            # TypeScript source files
-├ docs/           # Project documentation and notes
-├ tsconfig.json   # TypeScript compiler configuration
-└ README.md       # Project documentation
+├── index.html      # Home page
+├── style.css       # Styling and layout
+├── build.js        # Build script for JS files
+├── public/
+│   ├── assets/     # Images and icons
+│   └── dist/       # JavaScript output
+├── src/            # JavaScript source files
+│   ├── core/       # Theme management
+│   ├── effects/    # Visual effects (Night Sky)
+│   ├── features/   # UI and API features
+│   └── utils/      # DOM utilities
+├── docs/           # Project documentation
+└── README.md       # Project documentation
 
 ## 🎨 Sections
 
