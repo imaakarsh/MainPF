@@ -4,8 +4,7 @@ A modern, responsive portfolio website showcasing my work as a Full Stack Develo
 
 ## 🌐 Portfolio Link
 
-Visit the live site: [aakarshdev.vercel.app](https://aakarshdev.vercel.app/)
-
+Visit the live site: [aakarsh.me](https://aakarsh.me/)
 ## 📋 About
 
 This is my personal portfolio website built with HTML, CSS, and TypeScript. The interactive behavior now lives in `src/` and is emitted to `public/dist/` for the browser.
@@ -14,6 +13,7 @@ This is my personal portfolio website built with HTML, CSS, and TypeScript. The 
 
 - **Responsive Design** - Works seamlessly across all devices
 - **Modern UI** - Clean and professional interface
+- **Interactive Oneko** - A playful cat animation that follows your cursor with idle behaviors like sleeping and scratching
 - **Social Links** - Direct links to my social media profiles
 - **Easy Navigation** - Smooth navigation between sections
 - **Visitor Counter** - Real-time visitor tracking in the footer with auto-refresh functionality
@@ -29,16 +29,17 @@ This is my personal portfolio website built with HTML, CSS, and TypeScript. The 
 
 ## 📂 Project Structure
 
-```
+
 Portfolio/
 ├ public/
 │  ├ index.html   # Home page
 │  ├ style.css    # Styling and layout
 │  ├ assets/      # Images and icons
-│  └ dist/        # Browser-ready JavaScript output
+│  └ dist/        # Compiled JavaScript output
 ├ src/            # TypeScript source files
+├ docs/           # Project documentation and notes
+├ tsconfig.json   # TypeScript compiler configuration
 └ README.md       # Project documentation
-```
 
 ## 🎨 Sections
 
@@ -58,20 +59,24 @@ Portfolio/
 ## 🚀 Getting Started
 
 1. Install dependencies:
-   ```bash
+   bash
    npm install
-   ```
+   
 
 2. Build the TypeScript output:
-   ```bash
+   bash
    npm run build
-   ```
+   
 
-3. Open `public/index.html` in your browser:
-   ```bash
+3. Watch for changes (Development):
+   bash
+   npm run watch
+   
+
+4. Open `public/index.html` in your browser:
+   bash
    open public/index.html
-   ```
-
+   
 ## 📝 License
 
 This project is open source and available for personal use.
