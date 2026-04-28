@@ -1,11 +1,13 @@
 {
   "scripts": {
-    "build": "tsc -p tsconfig.json",
-    "watch": "tsc -w -p tsconfig.json"
-  },
+  "dev": "vite",
+  "build": "tsc -p tsconfig.json && vite build",
+  "preview": "vite preview"
+},
   "dependencies": {
     "@tailwindcss/vite": "^4.2.1",
-    "tailwindcss": "^4.2.1"
+    "tailwindcss": "^4.2.1",
+    "vite": "^8.0.10"
   },
   "devDependencies": {
     "typescript": "^5.8.3"
