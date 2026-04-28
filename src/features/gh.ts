@@ -1,3 +1,5 @@
+import { byId } from '../utils/dom';
+
 type ContributionDay = {
   date: string;
   count: number;
@@ -13,10 +15,6 @@ type ContributionApiResponse = {
 };
 
 const githubUsername = 'imaakarsh';
-
-function byId<T extends Element>(id: string): T | null {
-  return document.getElementById(id) as T | null;
-}
 
 export function initGitHubContributions(): void {
   const ghCard = byId<HTMLDivElement>('gh-glass-card');
@@ -37,7 +35,7 @@ export function initGitHubContributions(): void {
     ghObserver.observe(ghCard);
   }
 
-  const animateValue = (element: HTMLElement, target: number, suffix = ''): void => {
+  const animateValue = (element: HTMLElement, target: number, suffix = ''): number => {
     const duration = 1100;
     const step = target / (duration / 16);
     let current = 0;
@@ -49,6 +47,8 @@ export function initGitHubContributions(): void {
         window.clearInterval(timer);
       }
     }, 16);
+
+    return timer;
   };
 
   const computeStreaks = (weeks: ContributionWeek[]): { total: number; current: number; longest: number } => {
@@ -185,10 +185,14 @@ export function initVisitorCounter(): void {
   const namespace = 'aakarshdev-portfolio';
   const key = 'pageviews';
   const pollMs = 30_000;
-  const countEl = document.getElementById('visitor-count') as HTMLSpanElement | null;
+  const countEl = byId<HTMLSpanElement>('visitor-count');
   let lastValue: number | null = null;
+  let pollInterval: number | null = null;
 
-  if (!countEl) return;
+  if (!countEl) {
+    console.debug('Visitor counter element not found');
+    return;
+  }
 
   const setCount = (target: number, animate: boolean): void => {
     if (!animate || lastValue === null) {
@@ -246,7 +250,14 @@ export function initVisitorCounter(): void {
   };
 
   void fetchCount(true);
-  window.setInterval(() => {
+  pollInterval = window.setInterval(() => {
     void fetchCount(false);
   }, pollMs);
+
+  // Cleanup on page unload
+  window.addEventListener('beforeunload', () => {
+    if (pollInterval) {
+      clearInterval(pollInterval);
+    }
+  });
 }

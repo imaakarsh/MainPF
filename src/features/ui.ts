@@ -1,3 +1,5 @@
+import { byId, query, throttle } from '../utils/dom';
+
 const typingPhrases = [
   'Full Stack Developer.',
   'Creative Coder.',
@@ -5,10 +7,6 @@ const typingPhrases = [
   'Open Source Enthusiast.',
   'Lifelong Learner.',
 ];
-
-function byId<T extends Element>(id: string): T | null {
-  return document.getElementById(id) as T | null;
-}
 
 export function initAvatarToggle(): void {
   const avatar = byId<HTMLImageElement>('about-avatar-img');
@@ -132,11 +130,17 @@ export function initProgressBars(): void {
 }
 
 export function initCursorSpotlight(): void {
-  const spotlight = document.getElementById('cursor-spotlight') as HTMLDivElement | null;
+  const spotlight = byId<HTMLDivElement>('cursor-spotlight');
   if (!spotlight) return;
 
-  document.addEventListener('mousemove', (event) => {
-    spotlight.style.left = `${event.clientX}px`;
-    spotlight.style.top = `${event.clientY}px`;
-  });
+  const updateSpotlight = throttle((clientX: number, clientY: number): void => {
+    spotlight.style.left = `${clientX}px`;
+    spotlight.style.top = `${clientY}px`;
+  }, 16); // ~60fps
+
+  const handleMouseMove = (event: MouseEvent): void => {
+    updateSpotlight(event.clientX, event.clientY);
+  };
+
+  document.addEventListener('mousemove', handleMouseMove, { passive: true });
 }

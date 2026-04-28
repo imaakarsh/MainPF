@@ -1,9 +1,21 @@
+import { byId } from '../utils/dom';
+
+/**
+ * Initialize animated night sky effect with stars and shooting stars
+ * Only displays in dark mode and properly cleans up resources
+ */
 export function initNightSky(): void {
-  const canvas = document.getElementById('night-sky') as HTMLCanvasElement | null;
-  if (!canvas) return;
+  const canvas = byId<HTMLCanvasElement>('night-sky');
+  if (!canvas) {
+    console.debug('Night sky canvas not found');
+    return;
+  }
 
   const context = canvas.getContext('2d');
-  if (!context) return;
+  if (!context) {
+    console.warn('Unable to get 2D canvas context');
+    return;
+  }
 
   type Star = {
     x: number;
@@ -29,6 +41,7 @@ export function initNightSky(): void {
   let stars: Star[] = [];
   let shooters: Shooter[] = [];
   let raf: number | null = null;
+  let spawnInterval: number | null = null;
 
   const starCount = 200;
   const twinkleSpeed = 0.012;
@@ -62,7 +75,10 @@ export function initNightSky(): void {
 
   const init = (): void => {
     stars = Array.from({ length: starCount }, randomStar);
-    window.setInterval(spawnShooter, 3200);
+    if (spawnInterval) {
+      clearInterval(spawnInterval);
+    }
+    spawnInterval = window.setInterval(spawnShooter, 3200);
   };
 
   const drawAurora = (): void => {
@@ -144,6 +160,17 @@ export function initNightSky(): void {
     }
   };
 
+  const cleanup = (): void => {
+    stop();
+    if (spawnInterval) {
+      clearInterval(spawnInterval);
+      spawnInterval = null;
+    }
+    observer.disconnect();
+    resizeObserver.disconnect();
+    window.removeEventListener('resize', resize);
+  };
+
   const observer = new MutationObserver(() => {
     if (isDark()) {
       start();
@@ -160,6 +187,8 @@ export function initNightSky(): void {
   resizeObserver.observe(document.body);
 
   window.addEventListener('resize', resize);
+  window.addEventListener('beforeunload', cleanup);
+
   resize();
   init();
   if (isDark()) {

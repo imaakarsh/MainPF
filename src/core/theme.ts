@@ -1,10 +1,16 @@
+import { byId } from '../utils/dom';
+
 type Theme = 'light' | 'dark';
 
 export const themeStorageKey = 'portfolio-theme';
 
+/**
+ * Initialize theme system with toggle button and persistence
+ * Respects system preferences as fallback
+ */
 export function initTheme(): void {
-  const themeToggle = document.getElementById('theme-toggle') as HTMLButtonElement | null;
-  const themeToggleIcon = document.getElementById('theme-toggle-icon') as HTMLSpanElement | null;
+  const themeToggle = byId<HTMLButtonElement>('theme-toggle');
+  const themeToggleIcon = byId<HTMLSpanElement>('theme-toggle-icon');
 
   const getTheme = (): Theme => {
     const current = document.documentElement.getAttribute('data-theme');
@@ -13,10 +19,12 @@ export function initTheme(): void {
 
   const applyTheme = (theme: Theme): void => {
     document.documentElement.setAttribute('data-theme', theme);
+    
     try {
       localStorage.setItem(themeStorageKey, theme);
-    } catch {
-      // ignore
+    } catch (error) {
+      // localStorage might be disabled or full
+      console.debug('[Theme] Could not persist to localStorage', error);
     }
 
     const isLight = theme === 'light';
@@ -37,6 +45,7 @@ export function initTheme(): void {
     });
   }
 
+  // Load saved theme or use system preference
   try {
     const savedTheme = localStorage.getItem(themeStorageKey);
     if (savedTheme === 'light' || savedTheme === 'dark') {
@@ -44,7 +53,8 @@ export function initTheme(): void {
     } else {
       applyTheme(getTheme());
     }
-  } catch {
+  } catch (error) {
+    console.debug('[Theme] Could not load from localStorage', error);
     applyTheme(getTheme());
   }
 }

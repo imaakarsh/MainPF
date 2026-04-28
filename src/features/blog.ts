@@ -1,6 +1,13 @@
+import { byId, queryAll } from '../utils/dom';
+
 export function initBlogFiltering(): void {
-  const buttons = Array.from(document.querySelectorAll<HTMLButtonElement>('.blog-tag[data-blog-tag]'));
-  const cards = Array.from(document.querySelectorAll<HTMLElement>('.blog-card'));
+  const buttons = queryAll<HTMLButtonElement>('.blog-tag[data-blog-tag]');
+  const cards = queryAll<HTMLElement>('.blog-card');
+
+  if (buttons.length === 0 || cards.length === 0) {
+    console.debug('Blog filtering elements not found');
+    return;
+  }
 
   const applyFilter = (button: HTMLButtonElement, tag: string): void => {
     buttons.forEach((otherButton) => otherButton.classList.remove('active'));
@@ -26,13 +33,16 @@ export function initBlogFiltering(): void {
 }
 
 export function initBlogShowMore(): void {
-  const button = document.getElementById('blog-show-more-btn') as HTMLButtonElement | null;
-  const countEl = document.getElementById('blog-more-count') as HTMLSpanElement | null;
-  const labelEl = document.querySelector<HTMLSpanElement>('.blog-show-more-label');
-  const chevron = document.getElementById('blog-chevron') as SVGElement | null;
-  const collapsedCards = Array.from(document.querySelectorAll<HTMLElement>('.blog-card--collapsed'));
+  const button = byId<HTMLButtonElement>('blog-show-more-btn');
+  const countEl = byId<HTMLSpanElement>('blog-more-count');
+  const labelEl = byId<HTMLSpanElement>('.blog-show-more-label');
+  const chevron = byId<SVGElement>('blog-chevron');
+  const collapsedCards = queryAll<HTMLElement>('.blog-card--collapsed');
 
-  if (!button || !countEl || !labelEl || !chevron) return;
+  if (!button || !countEl || !labelEl || !chevron || collapsedCards.length === 0) {
+    console.debug('Blog show more elements not found');
+    return;
+  }
 
   const setExpanded = (expanded: boolean): void => {
     if (expanded) {
