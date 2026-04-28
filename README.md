@@ -4,7 +4,7 @@ A modern, responsive portfolio website showcasing my work as a Full Stack Develo
 
 ## 🌐 Portfolio Link
 
-Visit the live site: [aakarsh.me](https://aakarsh.me/)
+Visit the live site: [imaakarsh.github.io/Portfolio.me](https://imaakarsh.github.io/Portfolio.me/)
 ## 📋 About
 
 This is my personal portfolio website built with HTML, CSS, and TypeScript. The interactive behavior now lives in `src/` and is emitted to `public/dist/` for the browser.
