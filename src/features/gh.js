@@ -168,110 +168,31 @@ export function initGitHubContributions() {
 }
 
 export function initVisitorCounter() {
-  const namespace = 'aakarshdev-portfolio';
-  const key = 'pageviews';
-  const pollMs = 30_000;
   const countEl = byId('visitor-count');
-  let lastValue = null;
-  let pollInterval = null;
-
-  const getSessionFlag = (flag) => {
-    try {
-      return sessionStorage.getItem(flag);
-    } catch (error) {
-      return null;
-    }
-  };
-
-  const setSessionFlag = (flag, value) => {
-    try {
-      sessionStorage.setItem(flag, value);
-    } catch (error) {
-      // Storage can be disabled in some browsers or privacy modes.
-    }
-  };
 
   if (!countEl) {
     console.debug('Visitor counter element not found');
     return;
   }
 
-  const setCount = (target, animate) => {
-    if (!animate || lastValue === null) {
-      const duration = 1000;
-      const step = Math.max(1, Math.floor(target / (duration / 16)));
-      let current = Math.max(0, target - step * 20);
-      countEl.textContent = current.toLocaleString();
-      const timer = window.setInterval(() => {
-        current = Math.min(current + step, target);
-        countEl.textContent = current.toLocaleString();
-        if (current >= target) {
-          window.clearInterval(timer);
-        }
-      }, 16);
-    } else if (target !== lastValue) {
-      const diff = target - lastValue;
-      const steps = Math.abs(diff);
-      const direction = Math.sign(diff);
-      let done = 0;
-      let current = lastValue;
-      const timer = window.setInterval(() => {
-        current += direction;
-        countEl.textContent = current.toLocaleString();
-        done += 1;
-        if (done >= steps) {
-          window.clearInterval(timer);
-        }
-      }, Math.max(16, Math.round(300 / steps)));
+  const storageKey = 'portfolio-visitor-count';
+  const sessionKey = 'portfolio-visitor-counted';
+
+  try {
+    const existingCount = Number.parseInt(localStorage.getItem(storageKey) ?? '0', 10);
+    const alreadyCounted = sessionStorage.getItem(sessionKey) === '1';
+
+    if (!alreadyCounted) {
+      const nextCount = Number.isFinite(existingCount) && existingCount > 0 ? existingCount + 1 : 1;
+      localStorage.setItem(storageKey, String(nextCount));
+      sessionStorage.setItem(sessionKey, '1');
+      countEl.textContent = String(nextCount);
+      return;
     }
 
-    lastValue = target;
-  };
-
-  const fetchCount = async (isFirst) => {
-    try {
-      const countedThisSession = getSessionFlag('vc_counted');
-      const shouldHit = isFirst && !countedThisSession;
-      const endpoints = shouldHit
-        ? [
-            `https://api.countapi.xyz/hit/${namespace}/${key}`,
-            `https://api.countapi.xyz/get/${namespace}/${key}`,
-          ]
-        : [`https://api.countapi.xyz/get/${namespace}/${key}`];
-
-      for (const endpoint of endpoints) {
-        const response = await fetch(endpoint, { cache: 'no-store' });
-        if (!response.ok) {
-          continue;
-        }
-
-        const data = await response.json();
-        if (data.value == null) {
-          continue;
-        }
-
-        if (shouldHit) {
-          setSessionFlag('vc_counted', '1');
-        }
-
-        setCount(data.value, !isFirst);
-        return;
-      }
-    } catch (error) {
-      console.warn('[Visitor Counter]', error);
-      countEl.textContent = '--';
-    }
-  };
-
-  fetchCount(true);
-  pollInterval = window.setInterval(() => {
-    fetchCount(false);
-  }, pollMs);
-
-  // Cleanup on page unload
-  window.addEventListener('beforeunload', () => {
-    if (pollInterval) {
-      clearInterval(pollInterval);
-    }
-  });
+    const safeCount = Number.isFinite(existingCount) && existingCount > 0 ? existingCount : 1;
+    countEl.textContent = String(safeCount);
+  } catch (error) {
+    countEl.textContent = '1';
+  }
 }
